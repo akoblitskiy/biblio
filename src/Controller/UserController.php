@@ -5,11 +5,13 @@ use Core\Controller;
 
 class AuthorController extends Controller {
 
-    public function index(Request $request) {
-
+    public function login(Request $request) {
+        $this->view->setContentView('auth/login.php');
+        return $this->view->render((array)$this);
     }
 
-    public function show(Request $request) {
-
+    public function signup(Request $request) {
+        $this->view->setContentView('auth/signin.php');
+        return $this->view->render((array)$this);
     }
 }

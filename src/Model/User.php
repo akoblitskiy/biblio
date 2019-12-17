@@ -3,27 +3,23 @@ namespace Src\Model;
 
 use Core\Model;
 
-class Author extends Model {
-    protected static $tableName = 'author';
-    protected static $primaryKeys = 'id';
-    protected static $relations =
-        [
-            'Book' => [
-                'transition' => [ 'model' => 'BookAuthor', 'table' => 'book_to_author'],
-                'from' => [ 'local' => 'id', 'foreign' => 'author_id' ],
-                'to' => [ 'local' => 'book_id', 'foreign' => 'id' ]
-            ],
-        ];
+class User extends Model {
+    protected static $tableName = 'user';
+    protected static $primaryKeys = ['id'];
+    protected static $relations = null;
 
     /** @var int */
-    private $id;
+    protected $id;
 
     /** @var string */
-    private $name;
+    protected $name;
 
     /** @var string */
-    private $bio;
+    protected $fullname;
 
-    /** @var array */
-    private $Books;
+    /** @var string */
+    protected $password;
+
+    /** @var \DateTime */
+    protected $createdAt;
 }
