@@ -1,0 +1,43 @@
+server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+        server_name localhost;
+        root  /home/andrey/projects/biblio;
+
+        index public/index.php;
+        # add_header Access-Control-Allow-Origin *;
+
+
+        # serve static files directly
+        location ~* \.(jpg|jpeg|gif|css|png|js|ico|html)$ {
+                access_log off;
+                expires max;
+                log_not_found off;
+        }
+
+        location / {
+                # add_header Access-Control-Allow-Origin *;
+                try_files public/$uri public/$uri/ @app;
+        }
+
+        location ~* \.php$ {
+                try_files $uri @app;
+                fastcgi_split_path_info ^(.+\.php)(/.+)$;
+                fastcgi_pass unix:/var/run/php/php7.2-fpm.sock;
+                include fastcgi_params;
+                fastcgi_index index.php;
+                fastcgi_param SCRIPT_FILENAME $document_root/public/$fastcgi_script_name;
+        }
+        location @app {
+                fastcgi_pass unix:/var/run/php/php7.2-fpm.sock;
+                include fastcgi_params;
+                fastcgi_index index.php;
+                fastcgi_param SCRIPT_FILENAME $document_root/public/index.php;
+                fastcgi_param SCRIPT_NAME     /index.php;
+                fastcgi_param QUERY_STRING    q=$uri&$args;
+        }
+
+    location ~ /\.ht {
+                deny all;
+        }
+}

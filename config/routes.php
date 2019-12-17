@@ -7,20 +7,6 @@ return [
             'controller' => 'MainController',
             'action' => 'index'
         ],
-    'login' =>
-        [
-            'path' => '/login',
-            'method' => 'POST',
-            'controller' => 'UserController',
-            'action' => 'login'
-        ],
-    'signup' =>
-        [
-            'path' => '/signup',
-            'method' => 'POST',
-            'controller' => 'UserController',
-            'action' => 'signup'
-        ],
     'books' =>
         [
             'path' => '/book/:id',
