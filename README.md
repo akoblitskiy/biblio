@@ -18,17 +18,15 @@ Database dump - db.sql
 
 Examples
 
-GET method:
+* GET method:
 `book/1` - get book by id = 1
 `book?_page=1` - get books on page 1
 `book?name=Book` - get books with name 'Book' - pass any entity fields as query args
-POST method:
+* POST method:
 `book` url with post body
 `{ id: 1, name: "Name" ... }`
 returns 204 No Content if successful
-
-PUT and DELETE methods:
+* PUT and DELETE methods:
 `book/{id}` url
 for put is also needed modified object in request body
-
 returns 204 No Content if successful
